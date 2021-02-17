@@ -68,11 +68,12 @@ ul li {
   border: 1px solid #ddd;
   margin-top: -1px; /* Prevent double borders */
   background-color: #aaafff;
+  box-shadow: 1px 1px 1px black;
   padding: 12px;
   text-decoration: none;
   font-size: 18px;
   color: black;
-  display: block;
+  display: inline;
   position: relative; /* keeps inner(span) inside li*/
   
 }
@@ -117,4 +118,36 @@ ul li {
 .clock:hover{
   opacity: 1;
   border: 1px solid black;
+}
+/* The folowing is CSS from Login.css 
+If you import both css files Login & App at the same time..it causes slight errors
+by overriding the main App.css file???*/
+
+#loginCard {
+  box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+  border: 1px solid #ccc;
+  margin-left: 10%;
+  width: 75%;
+  margin-top: 20px;
+}
+#loginCardItems{
+  position: relative;
+  margin-top: 50px;
+  margin-left: 30%;
+}
+
+#loginCardItems input{
+  height: 35px;
+  width: 500px;
+  font-size: 25px;
+}
+
+#loginCardItems button {
+  font-size: 40px;
+  margin-left: 150px;
+}
+
+label {
+  font-size: 30px;
+  text-align: center;
 }
