@@ -1,11 +1,10 @@
-
 import React, { useState } from "react";
 
 
 
 export default function Register() {
   
-  const [RegCredentials, setParams] = useState({email: "", name: "" ,password: ""});
+  const [RegCredentials, setParams] = useState({email: "", user: "" ,password: ""});
 
 
   /*function validateForm() {
@@ -33,7 +32,7 @@ export default function Register() {
     console.log(newObj)
   }
   function enterUser(e){
-    const newObj={name:e.target.value}
+    const newObj={user:e.target.value}
     setParams(oldObj=>{
         return {...oldObj,...newObj}
     })

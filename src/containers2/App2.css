@@ -1,0 +1,160 @@
+body {
+    font: 14px "Century Gothic", Futura, sans-serif;
+    margin: 20px;
+    background-color: #5534ff;
+    color: rgb(245,222,179);
+    
+  }
+  textarea {
+    width: 500px;
+    height:150px;
+    font-size: 30px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+  }
+  textarea:hover {
+    border-radius:15px;
+  }
+  #card {
+    border: 3px solid #ccc;
+    border-radius: 50px;
+  }
+  #createList {
+    color: green;
+    font-size: 35px;
+    font-family: monospace;
+    margin-bottom: 10px;
+   
+   }
+  #clearList {
+    color:red;
+    font-size: 35px;
+    font-family: monospace;
+  }
+  #box {
+    box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+    border: 1px solid #ccc;
+    text-align: center;
+    border-radius: 5px;
+    margin-left: 200px;
+    margin-right: 200px;
+    
+    
+  }
+  #box:hover {
+    transform: scale(1.1);
+  
+  }
+  h1 {
+    font-size:50px;
+    text-align: center;
+   }
+  .timeSelect{
+    display: inline;
+    position: relative;
+    left:400px;
+  }
+  
+  .calendar1{
+    display:block;
+  }
+  
+  .calendar2{
+    display: none;
+  }
+  
+  
+  .NavBar > li {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #aaafff;
+    box-shadow: 1px 1px 1px black;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: inline;
+    font-family: monospace;
+    position: relative; /* keeps inner(span) inside li*/
+    
+  }
+  
+  .NavBar > li:hover {
+    opacity: 0.3;
+  }
+  
+  .btn1{
+    align-items: center;
+    background: #aaafff;
+    box-shadow: 1px 1px 1px rgba(0, 0, 250, 0.8);
+    display: block;
+    font-size: 50px;
+    justify-content: space-between;
+    padding: 3px 10px;
+    margin: 10px 25px 0px 0px;
+    border-radius: 50px;
+  }
+  
+  .btn1:hover {
+    cursor:pointer;
+    transform: scale(1.01);
+    background-color: rgb(245,222,179);
+    
+  }
+  .close {
+    cursor:pointer;
+    position: absolute;
+    top:50%;
+    right: 0%;
+    padding: 12px 16px;
+    transform: translate(0%, -50%);
+    opacity: 0.7;
+    color: red;
+  }
+  .close:hover {
+    opacity:1;
+  }
+  
+  .clock{
+    cursor: pointer;
+    position: absolute;
+    right: 5%;
+    padding: 0px 16px;
+    opacity: 0.4;
+  }
+  .clock:hover{
+    opacity: 1;
+    border: 1px solid black;
+  }
+  /* The folowing is CSS from Login.css 
+  If you import both css files Login & App at the same time..it causes slight errors
+  by overriding the main App.css file???*/
+  
+  #loginCard {
+    box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+    border: 1px solid #ccc;
+    margin-left: 10%;
+    width: 75%;
+    margin-top: 20px;
+  }
+  #loginCardItems{
+    position: relative;
+    margin-top: 50px;
+    margin-left: 30%;
+  }
+  
+  #loginCardItems input{
+    height: 35px;
+    width: 500px;
+    font-size: 25px;
+  }
+  
+  #loginCardItems button {
+    font-size: 40px;
+    margin-left: 150px;
+  }
+  
+  label {
+    font-size: 30px;
+    text-align: center;
+  }

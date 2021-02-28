@@ -1,39 +1,42 @@
+import {React, useState, useContext} from "react";
+import { AuthContext } from '../App2'
 
-import React, { useState } from "react";
 
-
-
-export default function Register() {
+export default function Login() {
   
-  const [RegCredentials, setParams] = useState({email: "", name: "" ,password: ""});
+  const [loginCredentials, setParams] = useState({email: "", password: ""});
+  const  { dispatch } = useContext(AuthContext);
+  console.log(dispatch)
+  console.log(window.location)
+  console.log(window.location.pathname)
 
 
-  /*function validateForm() {
-    return RegCredentials.email.length > 0 && RegCredentials.password.length > 0;
-  }*/
+
+  
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(RegCredentials)
+    console.log(loginCredentials)
     const requestOptions = {
       method: 'POST',
       //mode: 'cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ title: 'React POST Request Example',data: RegCredentials})
+      body: JSON.stringify({ title: 'React POST Request Example',data: loginCredentials})
   };
-  fetch('http://localhost:3001/users', requestOptions)
-      .then(res => res.text())
-    
-  }
+  
+  fetch('http://localhost:3001/login',requestOptions)
+      .then(res => res.json())
+      .then(resJSON=>dispatch({type: "LOGIN",
+    payload: resJSON}))
+      .then(()=>console.log(localStorage.getItem('token')+"HAHA GOTIT"))
+      
+
+   
+  
+
+    }
   function enterEmail(e){
     const newObj={email:e.target.value}
-    setParams(oldObj=>{
-        return {...oldObj,...newObj}
-    })
-    console.log(newObj)
-  }
-  function enterUser(e){
-    const newObj={name:e.target.value}
     setParams(oldObj=>{
         return {...oldObj,...newObj}
     })
@@ -52,17 +55,15 @@ export default function Register() {
   return (
     <div>
     <div id="loginCard">
-    <form id="loginCardItems" onSubmit={(e)=>handleSubmit(e)}>
+    <form id="loginCardItems" onSubmit={(e)=>handleSubmit(e)} method="post">
         <label for="email">Email:</label><br></br>
         <input type="text" name="email" placeholder="Enter Email" onChange={(e)=>enterEmail(e)}></input><br></br>
-        <label for="email">First Name:</label><br></br>
-        <input type="text" name="email" placeholder="Enter your name" onChange={(e)=>enterUser(e)}></input><br></br>
         <label for="pass">Password:</label><br></br>
         <input type="text" name="pass" placeholder="Enter Password" onChange={(e)=>enterPassword(e)}></input><br></br>
-        <button>Register</button>
+        <button>Login</button>
     </form> 
     </div>
     </div>
     
   );
-}
+  }

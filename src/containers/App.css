@@ -64,7 +64,7 @@ h1 {
 }
 
 
-ul li {
+.NavBar > li {
   border: 1px solid #ddd;
   margin-top: -1px; /* Prevent double borders */
   background-color: #aaafff;
@@ -74,8 +74,13 @@ ul li {
   font-size: 18px;
   color: black;
   display: inline;
+  font-family: monospace;
   position: relative; /* keeps inner(span) inside li*/
   
+}
+
+.NavBar > li:hover {
+  opacity: 0.3;
 }
 
 .btn1{
@@ -103,15 +108,17 @@ ul li {
   right: 0%;
   padding: 12px 16px;
   transform: translate(0%, -50%);
-  opacity: 0.8;
+  opacity: 0.7;
   color: red;
 }
-.close:hover {opacity:1}
+.close:hover {
+  opacity:1;
+}
 
 .clock{
   cursor: pointer;
   position: absolute;
-  right: 2%;
+  right: 5%;
   padding: 0px 16px;
   opacity: 0.4;
 }

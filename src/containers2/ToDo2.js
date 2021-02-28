@@ -1,4 +1,4 @@
-import './App.css';
+import './App2.css';
 import React from'react';
 
 const initialState={userInput:"",toDoList:[]}
@@ -10,6 +10,10 @@ function inputValidator(arr){
   return result
 }
 
+/*let cUser=localStorage.getItem('user')
+let cUser2=JSON.parse(cUser)
+console.log(cUser2)
+*/
 
 
   
@@ -112,13 +116,13 @@ class MyToDoList extends React.Component {
     });
   }
   render() {
-
-    const items = !inputValidator(this.state.toDoList)&&this.state.toDoList.length==0?<h1>Enter some valid tasks separated by commas</h1>:this.state.toDoList.map((d,index)=>d==""?null:<div key={index}><li className="btn1" key={index}>{d}<span onClick={()=>this.setTime(index)} className="clock">&#128337;</span><span className="close" onClick={()=>this.updateItem(index)}>x</span></li><Calendar style={this.state.vis[index]?"calendar1":"calendar2"}/></div>)
+    console.log(this.props.user.username)
+    
+    const items = !inputValidator(this.state.toDoList)&&this.state.toDoList.length===0?<h1>Enter some valid tasks separated by commas</h1>:this.state.toDoList.map((d,index)=>d===""?null:<div key={index}><li className="btn1" key={index}>{d}<span onClick={()=>this.setTime(index)} className="clock">&#128337;</span><span className="close" onClick={()=>this.updateItem(index)}>x</span></li><Calendar style={this.state.vis[index]?"calendar1":"calendar2"}/></div>)
     return (
     
-      
       <div className="toDoList">
-        <h1 id="box">My "To Do" List:</h1>
+        <h1 id="box">Hello {this.props.user.username} <br></br>Your "To Do" List:</h1>
         <textarea
           onChange={this.handleChange}
           value={this.state.userInput}
