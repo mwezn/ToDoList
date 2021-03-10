@@ -4,7 +4,7 @@ import { AuthContext } from '../App2'
 
 export default function Login() {
   
-  const [loginCredentials, setParams] = useState({email: "", password: ""});
+  const [loginCredentials, setParams] = useState({email: "", password: "", emailExist:null, passCorrect: null});
   const  { dispatch } = useContext(AuthContext);
   console.log(dispatch)
   console.log(window.location)
@@ -25,16 +25,26 @@ export default function Login() {
   };
   
   fetch('http://localhost:3001/login',requestOptions)
-      .then(res => res.json())
-      .then(resJSON=>dispatch({type: "LOGIN",
-    payload: resJSON}))
-      .then(()=>console.log(localStorage.getItem('token')+"HAHA GOTIT"))
-      
-
-   
+     .then(res => {
+       if (res.status===401) {
+        const newObj={passCorrect: false}
+        setParams(oldObj=>{ return {...oldObj, ...newObj}})
+      }
+      else if(res.status===400){
+        const newObj={emailExist: false}
+        setParams(oldObj=>{return {...oldObj, ...newObj}})
+      }
+      return res.json()
+    })
+    //.then(res => res.json())
+    .then(resJSON=>dispatch({type: "LOGIN",
+  payload: resJSON}))
+    .then(()=>console.log(localStorage.getItem('token')+"HAHA GOTIT"))
+  
+  }
   
 
-    }
+  
   function enterEmail(e){
     const newObj={email:e.target.value}
     setParams(oldObj=>{
@@ -50,7 +60,7 @@ export default function Login() {
     console.log(newObj)
   }
 
- 
+
 
   return (
     <div>
@@ -62,8 +72,9 @@ export default function Login() {
         <input type="text" name="pass" placeholder="Enter Password" onChange={(e)=>enterPassword(e)}></input><br></br>
         <button>Login</button>
     </form> 
+    <div><h1>{loginCredentials.emailExist===false?<p className="emailTaken">Email doesn't exist</p>:loginCredentials.passCorrect===false?<p className="emailTaken">Wrong Password</p>:null}</h1></div>
     </div>
     </div>
     
   );
-  }
+  };

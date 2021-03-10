@@ -45,6 +45,20 @@ body {
     transform: scale(1.1);
   
   }
+  .emailRegistered {
+    color: green;
+    background-color: #12eeff;
+    border: 1px solid seagreen;
+    font-family: monospace;
+    opacity: 60%
+  }
+  .emailTaken {
+    color: red;
+    background-color: rosybrown;
+    border: 2px solid red;
+    font-family: monospace;
+    opacity: 60%
+  }
   h1 {
     font-size:50px;
     text-align: center;
@@ -103,7 +117,7 @@ body {
   }
   .close {
     cursor:pointer;
-    position: absolute;
+    position: relative;
     top:50%;
     right: 0%;
     padding: 12px 16px;

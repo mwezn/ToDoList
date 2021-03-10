@@ -4,7 +4,7 @@ import React, { useState } from "react";
 
 export default function Register() {
   
-  const [RegCredentials, setParams] = useState({email: "", user: "" ,password: ""});
+  const [RegCredentials, setParams] = useState({email: "", user: "" ,password: "", emailAuth: null, serverResponse: null});
 
 
   /*function validateForm() {
@@ -20,8 +20,19 @@ export default function Register() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title: 'React POST Request Example',data: RegCredentials})
   };
-  fetch('http://localhost:3001/users', requestOptions)
-      .then(res => res.text())
+  fetch('http://localhost:3001/register', requestOptions)
+      .then(res => {
+        if (res.status===400) {
+          const newObj={emailAuth: false, serverResponse: res.text()}
+          setParams(oldObj=>{ return {...oldObj, ...newObj}})
+        }
+        else if(res.status===200){
+          const newObj={emailAuth: true, serverResponse: res.text()}
+          setParams(oldObj=>{return {...oldObj, ...newObj}})
+        }
+        
+
+      })
     
   }
   function enterEmail(e){
@@ -60,6 +71,8 @@ export default function Register() {
         <input type="text" name="pass" placeholder="Enter Password" onChange={(e)=>enterPassword(e)}></input><br></br>
         <button>Register</button>
     </form> 
+  <div><h1>{RegCredentials.emailAuth===false?<p className="emailTaken">Email already taken</p>:RegCredentials.emailAuth===true?<p className="emailRegistered">Succesfully registered. Check
+    your email!</p>:null}</h1></div>
     </div>
     </div>
     
