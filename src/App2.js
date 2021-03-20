@@ -8,10 +8,16 @@ import Register from './containers2/Register2'
 
 export const AuthContext = React.createContext();
 
+
+//Might need to use JSON.parse(localStorage.getItem('user')).username
+
+let userName=JSON.parse(localStorage.getItem('user'))?JSON.parse(localStorage.getItem('user')):null;
+
 const initialState = {
   isAuthenticated: false,
-  user: null,
-  token: null,
+  //user: localStorage.getItem('user'),
+  user: userName,
+  token: localStorage.getItem('token'),
 };
 
 const reducer = (state, action) => {
@@ -48,7 +54,7 @@ function MyRoutes(props){
       return <Login />
     }
     else {
-      return <h1>404 PAGE NOT FOUND!</h1>
+      return <h1>YOUVE LOGGED OUT</h1>
     }
 
 }
@@ -61,8 +67,8 @@ function App(){
       state,
       dispatch
     }}
-  > <Navigate authed={state.isAuthenticated}/>
-    <MyRoutes authed={state.isAuthenticated} user={state.user}/>
+  > <Navigate authed={state.token}/>
+    <MyRoutes authed={state.token} user={state.user}/>
   </AuthContext.Provider>
 )
 }

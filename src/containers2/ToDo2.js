@@ -31,9 +31,8 @@ function Calendar(props){
   var curr = new Date();
   var dt = curr.toISOString().substr(0,10);
   var tt=curr.toISOString().slice(11,16);
-  let [timeline,setTime]= React.useState({date:dt, time:tt});
-  //I want to round the above default time to next closest half hour!
-  console.log(timeline)
+  let [timeline,setTime]= React.useState({date:dt, time:tt, todo: props.item});
+
 
  function handleTime(e){
    const newObj={time:e.target.value}
@@ -50,14 +49,14 @@ function Calendar(props){
     })
     console.log(newObj);
   }
- function handleChange(e){
+ function serverSubmit(e){
    console.log(timeline)
  }
   return(<div className={props.style}>
   <label >Enter deadline:</label>
   <input type="date" id="start" onChange={(e)=>handleDate(e)} defaultValue={dt} name="trip-start"
        
-    min="2020-01-01" max="2021-12-31"></input><TimePicker onChange={(e)=>handleTime(e)} /><button className="timeSelect" onClick={(e)=>handleChange(e)}>Set Reminder</button></div>)
+    min="2020-01-01" max="2021-12-31"></input><TimePicker onChange={(e)=>handleTime(e)} /><button className="timeSelect" onClick={(e)=>serverSubmit(e)}>Set Reminder</button></div>)
   
 }
 
@@ -116,9 +115,9 @@ class MyToDoList extends React.Component {
     });
   }
   render() {
-    console.log(this.props.user.username)
+    console.log(this.props.user)
     
-    const items = !inputValidator(this.state.toDoList)&&this.state.toDoList.length===0?<h1>Enter some valid tasks separated by commas</h1>:this.state.toDoList.map((d,index)=>d===""?null:<div key={index}><li className="btn1" key={index}>{d}<span onClick={()=>this.setTime(index)} className="clock">&#128337;</span><span className="close" onClick={()=>this.updateItem(index)}>x</span></li><Calendar style={this.state.vis[index]?"calendar1":"calendar2"}/></div>)
+    const items = !inputValidator(this.state.toDoList)&&this.state.toDoList.length===0?<h1>Enter some valid tasks separated by commas</h1>:this.state.toDoList.map((d,index)=>d===""?null:<div key={index}><li className="btn1" key={index}>{d}<span onClick={()=>this.setTime(index)} className="clock">&#128337;</span><span className="close" onClick={()=>this.updateItem(index)}>x</span></li><Calendar item={d} style={this.state.vis[index]?"calendar1":"calendar2"}/></div>)
     return (
     
       <div className="toDoList">
