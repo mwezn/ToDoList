@@ -9,8 +9,6 @@ import Register from './containers2/Register2'
 export const AuthContext = React.createContext();
 
 
-//Might need to use JSON.parse(localStorage.getItem('user')).username
-
 let userName=JSON.parse(localStorage.getItem('user'))?JSON.parse(localStorage.getItem('user')):null;
 
 const initialState = {
