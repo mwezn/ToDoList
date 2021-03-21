@@ -51,9 +51,13 @@ function MyRoutes(props){
     else if(window.location.pathname ==="/login"){
       return <Login />
     }
-    else {
+    else if(window.location.pathname==="/logout"){
       return <h1>YOUVE LOGGED OUT</h1>
     }
+    else{
+      return <h1>404 Not Found!</h1>
+    }
+    
 
 }
 

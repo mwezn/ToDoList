@@ -118,7 +118,8 @@ class MyToDoList extends React.Component {
     this.setState({
       serverList: [...this.state.serverList,Object(e.target.value)]
     })
-    let newObj= this.props.user;
+    let newObj= {...this.props.user};
+    console.log(obj,e.target.value)
     newObj.log.push(obj)
     const requestOptions = {
       method: 'POST',
@@ -133,7 +134,7 @@ class MyToDoList extends React.Component {
   }
   render() {
     console.log(this.props.user)
-    const items2=this.state.serverList.map(d=><li key={Math.floor(Math.random()*100)}>{d}</li>)
+    const items2=this.state.serverList.map(d=><li key={d}>{d}</li>) //Changed the Key from Math.Random??
     const items = !inputValidator(this.state.toDoList)&&this.state.toDoList.length===0?<h1>Enter some valid tasks separated by commas</h1>:this.state.toDoList.map((d,index)=>d===""?null:<div key={index}><li className="btn1" key={index}>{d}<span onClick={()=>this.setTime(index)} className="clock">&#128337;</span><span className="close" onClick={()=>this.updateItem(index)}>x</span></li><Calendar onClick={(e)=>{this.submitToServer(e);this.updateItem(index)}} item={d} style={this.state.vis[index]?"calendar1":"calendar2"}/></div>)
     return (
       <div>
