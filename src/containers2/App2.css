@@ -82,6 +82,19 @@ body {
   .calendar2{
     display: none;
   }
+
+  ul li {
+    border: 1px solid #ddd;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #aaafff;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+    position: relative; /* keeps inner(span) inside li*/
+    
+  }
   
   
   .NavBar > li {
@@ -134,6 +147,8 @@ body {
   .close:hover {
     opacity:1;
   }
+
+  .close2 {display: none}
   
   .clock{
     cursor: pointer;
@@ -149,7 +164,27 @@ body {
   /* The folowing is CSS from Login.css 
   If you import both css files Login & App at the same time..it causes slight errors
   by overriding the main App.css file???*/
+
+  .clock2 {
+    display: none;
+  }
+
+  .greenTick1 {
+    display: inline;
+    position: absolute;
+    right:7%;
+  }
+  .greenTick2 {
+    display: none;
+  }
+  .submitted {
+    display: none;
+  }
+  .notsubmitted {
+    display: inline;
+  }
   
+
   #loginCard {
     box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
     border: 1px solid #ccc;
@@ -178,3 +213,4 @@ body {
     font-size: 30px;
     text-align: center;
   }
+

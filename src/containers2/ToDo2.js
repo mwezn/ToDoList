@@ -1,10 +1,8 @@
 import './App2.css';
 import React from'react';
 
-//MY LATEST CODE FROM CODEPEN
-const initialState={userInput:"",toDoList:[]}
-
-
+const initialState={userInput:"",toDoList:[],vis:[],
+      greentick: []}
 
 function inputValidator(arr){
   var Regex=/^[a-zA-Z0-9_]+$/g
@@ -22,7 +20,6 @@ function TimePicker(props){
     <input type="time" id="appt" name="appt"
        min="09:00" max="18:00" onChange={props.onChange} defaultValue={t.slice(11,16)} required></input></div>)
 }
-
 
 function Calendar(props){
   
@@ -46,12 +43,11 @@ function Calendar(props){
       return {...oldObj,...newObj}
     })
   }
- 
-  return(<div className={props.style}>
+  return(<div className={props.style2||props.style}>
       <label >Enter deadline:</label>
   <input type="date" id="start" onChange={(e)=>handleDate(e)} defaultValue={dt} name="trip-start"
        
-    min="2020-01-01" max="2021-12-31"></input><TimePicker onChange={(e)=>handleTime(e)} /><button className="timeSelect" onClick={props.onClick} value={JSON.stringify(timeline)}>Set Reminder</button></div>)
+    min="2020-01-01" max="2021-12-31"></input><TimePicker onChange={(e)=>handleTime(e)} /><button className={props.submitStyle} onClick={props.onClick} value={JSON.stringify(timeline)}>Set Reminder</button></div>)
   
 }
 
@@ -62,9 +58,9 @@ class MyToDoList extends React.Component {
     this.state={
       userInput:"",
       toDoList:[],
-      calendarVisible: false,
       serverList:[],
-      vis:[]
+      vis:[],
+      greentick:[]
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -72,11 +68,20 @@ class MyToDoList extends React.Component {
     this.clear=this.clear.bind(this)
     this.updateItem=this.updateItem.bind(this);
     this.submitToServer=this.submitToServer.bind(this);
+    this.removeReminder=this.removeReminder.bind(this);
   }
   clear(){
     this.setState(initialState)
   }
-  updateItem(e){
+
+
+  removeReminder(e){
+    this.state.serverList.splice(e,1);
+    this.setState({
+      serverList: this.state.serverList
+    })
+  }
+  updateItem(e, index){
     this.state.toDoList.splice(e,1);
     this.setState({
       toDoList: this.state.toDoList
@@ -85,7 +90,7 @@ class MyToDoList extends React.Component {
   setTime(e){
     this.state.vis.splice(e,1,!this.state.vis[e])
     this.setState({
-      calendarVisible: !this.state.calendarVisible
+      vis: this.state.vis
     })
     
   }
@@ -98,9 +103,9 @@ class MyToDoList extends React.Component {
     if(itemsArray[itemsArray.length-1]==="") itemsArray.pop()
     let visi=[]
     for (let i=0;i<itemsArray.length;i++){
-      visi.push(true)
-      
-     }
+      visi.push(true);
+      this.state.greentick.push(false)
+    }
     this.setState({
       toDoList: itemsArray,
       vis: visi
@@ -112,15 +117,22 @@ class MyToDoList extends React.Component {
     });
   }
   
-  submitToServer(e){
-    
+  submitToServer(e,index){
+
     let obj=JSON.parse(e.target.value)
+    console.log(e,index)
+    this.state.greentick.splice(index,1,!this.state.greentick[index])
     this.setState({
-      serverList: [...this.state.serverList,Object(e.target.value)]
+      serverList: [...this.state.serverList,Object(e.target.value)],
+      //greentick: this.state.greentick
+      
     })
+    
     let newObj= {...this.props.user};
     console.log(obj,e.target.value)
     newObj.log.push(obj)
+
+
     const requestOptions = {
       method: 'POST',
       //mode: 'cors',
@@ -134,8 +146,8 @@ class MyToDoList extends React.Component {
   }
   render() {
     console.log(this.props.user)
-    const items2=this.state.serverList.map(d=><li key={d}>{d}</li>) //Changed the Key from Math.Random??
-    const items = !inputValidator(this.state.toDoList)&&this.state.toDoList.length===0?<h1>Enter some valid tasks separated by commas</h1>:this.state.toDoList.map((d,index)=>d===""?null:<div key={index}><li className="btn1" key={index}>{d}<span onClick={()=>this.setTime(index)} className="clock">&#128337;</span><span className="close" onClick={()=>this.updateItem(index)}>x</span></li><Calendar onClick={(e)=>{this.submitToServer(e);this.updateItem(index)}} item={d} style={this.state.vis[index]?"calendar1":"calendar2"}/></div>)
+    const items2=this.state.serverList.map((d,i)=><li key={i}>{d}<span className="close" >X</span></li>) //Changed the Key from Math.Random??
+    const items = !inputValidator(this.state.toDoList)&&this.state.toDoList.length===0?<h1>Enter some valid tasks separated by commas</h1>:this.state.toDoList.map((d,index)=>d===""?null:<div key={index}><li className="btn1" key={index}>{d}<span onClick={()=>this.setTime(index)} className={this.state.greentick[index]?"clock2":"clock"}>&#128337;</span><span className={this.state.greentick[index]?"greenTick1":"greenTick2"}>&#9989;</span></li><Calendar onClick={(e)=>{this.submitToServer(e,index)}} item={d} style={this.state.vis[index]?"calendar1":"calendar2"} style2={this.state.greentick[index]?"calendar2":"calendar1"} submitStyle={this.state.greentick[index]?"submitted":"notsubmitted"}/></div>)
     return (
       <div>
         <h1 id="box">Hello {this.props.user.username} <br></br>Your "To Do" List:</h1>
