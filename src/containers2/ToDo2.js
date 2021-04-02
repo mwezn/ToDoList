@@ -29,14 +29,12 @@ function Calendar(props){
   var dt = curr.toISOString().substr(0,10);
   var tt=curr.toLocaleTimeString().slice(0,5);
   let [timeline,setTime]= React.useState({date:dt, time:tt, todo:props.item});
-  //console.log(timeline)
-
+  
  function handleTime(e){
    const newObj={time:e.target.value}
    setTime(oldObj=>{
      return {...oldObj,...newObj}
     })
-   console.log(timeline)
  }
   
  function handleDate(e){
@@ -100,8 +98,6 @@ class MyToDoList extends React.Component {
   handleSubmit() {
     
     const itemsArray = this.state.userInput.split(',');
-    console.log(itemsArray.length);
-    console.log(itemsArray)
     if(itemsArray[itemsArray.length-1]==="") itemsArray.pop()
     let visi=[]
     for (let i=0;i<itemsArray.length;i++){
@@ -131,8 +127,6 @@ class MyToDoList extends React.Component {
     })
     
     let newObj= {...this.props.user};
-    console.log(obj,e.target.value)
-    console.log(this.state.serverList)
     newObj.log.push(obj)
 
 

@@ -13,7 +13,7 @@ export default function Register() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(RegCredentials)
+
     const requestOptions = {
       method: 'POST',
       //mode: 'cors',
@@ -40,21 +40,21 @@ export default function Register() {
     setParams(oldObj=>{
         return {...oldObj,...newObj}
     })
-    console.log(newObj)
+    
   }
   function enterUser(e){
     const newObj={user:e.target.value}
     setParams(oldObj=>{
         return {...oldObj,...newObj}
     })
-    console.log(newObj)
+    
   }
   function enterPassword(e){
     const newObj={password:e.target.value}
     setParams(oldObj=>{
         return {...oldObj,...newObj}
     })
-    console.log(newObj)
+   
   }
 
  

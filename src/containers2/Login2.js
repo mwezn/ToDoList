@@ -6,9 +6,7 @@ export default function Login() {
   
   const [loginCredentials, setParams] = useState({email: "", password: "", emailExist:null, passCorrect: null});
   const  { dispatch } = useContext(AuthContext);
-  console.log(dispatch)
-  console.log(window.location)
-  console.log(window.location.pathname)
+  
 
 
 
@@ -16,7 +14,6 @@ export default function Login() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(loginCredentials)
     const requestOptions = {
       method: 'POST',
       //mode: 'cors',
@@ -49,14 +46,14 @@ export default function Login() {
     setParams(oldObj=>{
         return {...oldObj,...newObj}
     })
-    console.log(newObj)
+    
   }
   function enterPassword(e){
     const newObj={password:e.target.value}
     setParams(oldObj=>{
         return {...oldObj,...newObj}
     })
-    console.log(newObj)
+    
   }
 
 
