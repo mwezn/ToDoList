@@ -14,18 +14,20 @@ function inputValidator(arr){
   
 function TimePicker(props){
   var curr = new Date();
-  var t = curr.toISOString();
+  //var t = curr.toISOString(); this doesnt account for BST/GMT +1!!
+  //I changed it to LocaleTimeString as below
+  var t=curr.toLocaleTimeString()
   return(
     <div className="timeSelect"><label>Set Time:</label>
     <input type="time" id="appt" name="appt"
-       min="09:00" max="18:00" onChange={props.onChange} defaultValue={t.slice(11,16)} required></input></div>)
+       min="00:00" max="23:59" onChange={props.onChange} defaultValue={t.slice(0,5)} required></input></div>)
 }
 
 function Calendar(props){
   
   var curr = new Date();
   var dt = curr.toISOString().substr(0,10);
-  var tt=curr.toISOString().slice(11,16);
+  var tt=curr.toLocaleTimeString().slice(0,5);
   let [timeline,setTime]= React.useState({date:dt, time:tt, todo:props.item});
   //console.log(timeline)
 
