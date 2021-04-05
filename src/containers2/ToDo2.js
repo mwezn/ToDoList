@@ -1,6 +1,11 @@
 import './App2.css';
 import React from'react';
 
+import { AuthContext } from '../App2'
+
+
+
+
 const initialState={userInput:"",toDoList:[],vis:[],
       greentick: []}
 
@@ -9,6 +14,8 @@ function inputValidator(arr){
   var result=arr.some(e=> Regex.test(e));
   return result
 }
+
+
 
 
   
@@ -51,10 +58,18 @@ function Calendar(props){
   
 }
 
+
+
 class MyToDoList extends React.Component {
+  //static contextType= AuthContext;
+  
+  
+  
+  
   constructor(props) {
     super(props);
     // change code below this line
+    
     this.state={
       userInput:"",
       toDoList:[],
@@ -62,6 +77,10 @@ class MyToDoList extends React.Component {
       vis:[],
       greentick:[]
     }
+    
+
+    
+
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -69,6 +88,13 @@ class MyToDoList extends React.Component {
     this.updateItem=this.updateItem.bind(this);
     this.submitToServer=this.submitToServer.bind(this);
     this.removeReminder=this.removeReminder.bind(this);
+  }
+
+  
+
+  componentDidMount(){
+    console.log(this.context,this.context.length)
+    console.log(AuthContext)
   }
   clear(){
     this.setState(initialState)
@@ -116,7 +142,7 @@ class MyToDoList extends React.Component {
   }
   
   submitToServer(e,index){
-
+    
     let obj=JSON.parse(e.target.value)
     console.log(e,index)
     this.state.greentick.splice(index,1,!this.state.greentick[index])
@@ -138,13 +164,14 @@ class MyToDoList extends React.Component {
   }
 
     fetch('http://localhost:3001/addTodo', requestOptions)
-       .then(res=> res.json());
+       .then(res=> res.json())
+       //.then(resJSON=>dispatch({type: "SETREMINDER", payload: resJSON}))
     
   }
   render() {
     console.log(this.props.user)
     const items2=this.state.serverList.map((d,i)=><li key={i}>{d}<span className="close" onClick={()=>this.removeReminder(i)} >X</span></li>) //Changed the Key from Math.Random??
-    const items3= this.props.user.log.map((d,i)=><li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={()=>this.removeReminder(i)} >X</span></li>)
+    const items3= this.props.user.log.map((d,i)=><li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={()=>this.removeReminder(i)} >X<span class="tooltiptext">Delete Reminder</span></span></li>)
     const items = !inputValidator(this.state.toDoList)&&this.state.toDoList.length===0?<h1>Enter some valid tasks separated by commas</h1>:this.state.toDoList.map((d,index)=>d===""?null:<div key={index}><li className="btn1" key={index}>{d}<span onClick={()=>this.setTime(index)} className={this.state.greentick[index]?"clock2":"clock"}>&#128337;</span><span className={this.state.greentick[index]?"greenTick1":"greenTick2"}>&#9989;</span></li><Calendar onClick={(e)=>{this.submitToServer(e,index)}} item={d} style={this.state.vis[index]?"calendar1":"calendar2"} style2={this.state.greentick[index]?"calendar2":"calendar1"} submitStyle={this.state.greentick[index]?"submitted":"notsubmitted"}/></div>)
     return (
       <div>
@@ -167,5 +194,7 @@ class MyToDoList extends React.Component {
     );
   }
 }
+//MyToDoList.contextType= AuthContext
+
 
 export default MyToDoList;

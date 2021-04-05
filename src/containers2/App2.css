@@ -146,6 +146,25 @@ body {
   }
   .close:hover {
     opacity:1;
+    
+  }
+  .close .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /*top: -5px;
+    right: 105%;*/
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .close:hover .tooltiptext {
+    visibility: visible;
   }
 
   .close2 {display: none}

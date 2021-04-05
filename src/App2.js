@@ -6,11 +6,11 @@ import Register from './containers2/Register2'
 
 
 
-export const AuthContext = React.createContext();
+const AuthContext = React.createContext();
 
 
 let userName=JSON.parse(localStorage.getItem('user'))?JSON.parse(localStorage.getItem('user')):null;
-
+console.log("YOUR DISPtcth is"+ userName)
 const initialState = {
   isAuthenticated: false,
   //user: localStorage.getItem('user'),
@@ -36,6 +36,11 @@ const reducer = (state, action) => {
         isAuthenticated: false,
         user: null
       };
+    case "SETREMINDER":
+      localStorage.setItem("user", JSON.stringify(action.payload.user))
+      return {
+        ...state
+      }
     default:
       return state;
   }
@@ -74,7 +79,8 @@ function App(){
   </AuthContext.Provider>
 )
 }
-export default App
+export {App}
+export {AuthContext}
 
 //I replaced the following with <MyRoutes />
 //<div className="App">{!state.isAuthenticated ? <Login /> : <MyToDoList />}</div>
