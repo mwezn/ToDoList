@@ -1,5 +1,6 @@
 import React from 'react';
 import Login from './containers2/Login2'
+import MyToDoComp from './containers2/Todo'
 import MyToDoList from './containers2/ToDo2'
 import Navigate from './containers2/NavBar2'
 import Register from './containers2/Register2'
@@ -39,7 +40,9 @@ const reducer = (state, action) => {
     case "SETREMINDER":
       localStorage.setItem("user", JSON.stringify(action.payload.user))
       return {
-        ...state
+        ...state,
+        isAuthenticated: true,
+        user: action.payload.user
       }
     default:
       return state;
@@ -48,7 +51,7 @@ const reducer = (state, action) => {
 
 function MyRoutes(props){
     if (window.location.pathname === "/") {
-      return props.authed?<MyToDoList user={props.user} />:<Login />
+      return props.authed?<MyToDoComp user={props.user} />:<Login />
     }
     else if (window.location.pathname === "/register"){
       return <Register />

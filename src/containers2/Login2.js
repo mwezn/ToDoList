@@ -33,7 +33,6 @@ export default function Login() {
       }
       return res.json()
     })
-    //.then(res => res.json())
     .then(resJSON=>dispatch({type: "LOGIN", payload: resJSON}))
     .then(()=>console.log(localStorage.getItem('token')+"HAHA GOTIT"))
   
