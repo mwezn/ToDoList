@@ -38,11 +38,12 @@ const reducer = (state, action) => {
         user: null
       };
     case "SETREMINDER":
-      localStorage.setItem("user", JSON.stringify(action.payload.user))
+      localStorage.removeItem("user")
+      localStorage.setItem("user", JSON.stringify(action.payload))
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload.user
+        user: action.payload
       }
     default:
       return state;

@@ -144,11 +144,9 @@ function MyToDoComp(props){
   }
 
     fetch('http://localhost:3001/addTodo', requestOptions)
-       .then(res=> {
-        console.log(res.json())
-        //return res.json()
-      })
-       //.then(resJSON=>dispatch({type: "SETREMINDER", payload: resJSON}))
+       .then(res=> {return res.json()})
+       //.then(resJSON=>console.log(resJSON))
+       .then(resJSON=>dispatch({type: "SETREMINDER", payload: resJSON}))
     
     }
   
