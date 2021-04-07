@@ -1,7 +1,6 @@
 import React from 'react';
 import Login from './containers2/Login2'
 import MyToDoComp from './containers2/Todo'
-import MyToDoList from './containers2/ToDo2'
 import Navigate from './containers2/NavBar2'
 import Register from './containers2/Register2'
 

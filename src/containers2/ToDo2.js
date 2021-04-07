@@ -170,7 +170,6 @@ class MyToDoList extends React.Component {
   }
   render() {
     console.log(this.props.user)
-    const items2=this.state.serverList.map((d,i)=><li key={i}>{d}<span className="close" onClick={()=>this.removeReminder(i)} >X</span></li>) //Changed the Key from Math.Random??
     const items3= this.props.user.log.map((d,i)=><li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={()=>this.removeReminder(i)} >X<span class="tooltiptext">Delete Reminder</span></span></li>)
     const items = !inputValidator(this.state.toDoList)&&this.state.toDoList.length===0?<h1>Enter some valid tasks separated by commas</h1>:this.state.toDoList.map((d,index)=>d===""?null:<div key={index}><li className="btn1" key={index}>{d}<span onClick={()=>this.setTime(index)} className={this.state.greentick[index]?"clock2":"clock"}>&#128337;</span><span className={this.state.greentick[index]?"greenTick1":"greenTick2"}>&#9989;</span></li><Calendar onClick={(e)=>{this.submitToServer(e,index)}} item={d} style={this.state.vis[index]?"calendar1":"calendar2"} style2={this.state.greentick[index]?"calendar2":"calendar1"} submitStyle={this.state.greentick[index]?"submitted":"notsubmitted"}/></div>)
     return (
