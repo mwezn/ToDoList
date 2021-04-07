@@ -115,8 +115,22 @@ function MyToDoComp(props){
     console.log(AppState)
   }
 
-  function removeReminder(){
+  function removeReminder(i){
       console.log(AppState)
+      let newObj= {...props.user}
+      let item=newObj.log.splice(i,1)
+      console.log(item)
+      const requestOptions = {
+        method: 'POST',
+        //mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({data: newObj,Item: item})
+    }
+  
+      fetch('http://localhost:3001/removeTodo', requestOptions)
+         .then(res=> {return res.json()})
+         //.then(resJSON=>console.log(resJSON))
+         .then(resJSON=>dispatch({type: "SETREMINDER", payload: resJSON}))
   }
   
   function submitToServer(e,index){

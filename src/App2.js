@@ -14,7 +14,6 @@ let userName=JSON.parse(localStorage.getItem('user'))?JSON.parse(localStorage.ge
 console.log("YOUR DISPtcth is"+ userName)
 const initialState = {
   isAuthenticated: false,
-  //user: localStorage.getItem('user'),
   user: userName,
   token: localStorage.getItem('token'),
 };
