@@ -114,6 +114,9 @@ function MyToDoComp(props){
     });
     console.log(AppState)
   }
+  function removeOverdue(i){
+    console.log(i)
+  }
 
   function removeReminder(i){
       console.log(AppState)
@@ -166,7 +169,7 @@ function MyToDoComp(props){
   
   
     console.log(props.user)
-    //const items2=AppState.serverList.map((d,i)=><li key={i}>{d}<span className="close" onClick={()=>this.removeReminder(i)} >X</span></li>) //Changed the Key from Math.Random??
+    const items2=props.user.overdue.map((d,i)=><li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={()=>removeOverdue(i)} >X<span class="tooltiptext">Delete Reminder?</span></span></li>)
     const items3= props.user.log.map((d,i)=><li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={()=>removeReminder(i)} >X<span class="tooltiptext">Delete Reminder?</span></span></li>)
     const items = !inputValidator(AppState.toDoList)&&AppState.toDoList.length===0?<h1>Enter some valid tasks separated by commas</h1>:AppState.toDoList.map((d,index)=>d===""?null:<div key={index}><li className="btn1" key={index}>{d}<span onClick={()=>setTime(index)} className={AppState.greentick[index]?"clock2":"clock"}>&#128337;</span><span className={AppState.greentick[index]?"greenTick1":"greenTick2"}>&#9989;</span></li><Calendar onClick={(e)=>{submitToServer(e,index)}} item={d} style={AppState.vis[index]?"calendar1":"calendar2"} style2={AppState.greentick[index]?"calendar2":"calendar1"} submitStyle={AppState.greentick[index]?"submitted":"notsubmitted"}/></div>)
     return (
@@ -174,6 +177,7 @@ function MyToDoComp(props){
       <div>
         <h1 id="box">Hello {props.user.username} <br></br>Your "To Do" List:</h1>
         <div id="readyToPlan"><h2>You will be emailed the following reminders:</h2><ul>{items3}</ul></div>
+        <div id="readyToPlan"><h2>Your overdue Tasks:</h2><ul>{items2}</ul></div>
         <textarea
           onChange={(e)=>handleChange(e)}
           value={AppState.userInput}
