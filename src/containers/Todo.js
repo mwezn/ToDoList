@@ -1,6 +1,6 @@
-//This is the functional component attempting to use
-//React.useContext!
-import './App2.css';
+//This is the functional component definition 
+//Its needed in order to use react hooks 
+import './App.css';
 import React from'react';
 
 import { AuthContext } from '../App'

@@ -1,8 +1,8 @@
 import React from 'react';
-import Login from './containers2/Login'
-import MyToDoComp from './containers2/Todo'
-import Navigate from './containers2/NavBar'
-import Register from './containers2/Register'
+import Login from './containers/Login'
+import MyToDoComp from './containers/Todo'
+import Navigate from './containers/NavBar'
+import Register from './containers/Register'
 
 
 

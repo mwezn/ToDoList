@@ -1,4 +1,6 @@
-import './App2.css';
+
+//This is the class component definition 
+import './App.css';
 import React from'react';
 
 import { AuthContext } from '../App'
