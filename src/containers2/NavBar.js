@@ -1,5 +1,5 @@
 
-import { AuthContext } from '../App2'
+import { AuthContext } from '../App'
 import {useContext } from "react";
 import './App2.css'
 

@@ -3,7 +3,7 @@
 import './App2.css';
 import React from'react';
 
-import { AuthContext } from '../App2'
+import { AuthContext } from '../App'
 
 
 
