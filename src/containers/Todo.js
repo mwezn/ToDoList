@@ -75,13 +75,6 @@ function MyToDoComp(props){
     setParams(old=>{return {...old,...initialState}})
   }
 
-
-  /*updateItem(e, index){
-    this.state.toDoList.splice(e,1);
-    this.setState({
-      toDoList: this.state.toDoList
-    })
-  } */
   function setTime(e){
     AppState.vis.splice(e,1,!AppState.vis[e])
     setParams(old=>{
@@ -115,8 +108,23 @@ function MyToDoComp(props){
     console.log(AppState)
   }
   function removeOverdue(i){
-    console.log(i)
+      console.log(AppState)
+      let newObj= {...props.user}
+      let item=newObj.overdue.splice(i,1)
+      console.log(item)
+      const requestOptions = {
+        method: 'POST',
+        //mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({data: newObj,Item: item})
+    }
+  
+      fetch('http://localhost:3001/removeOverdue', requestOptions)
+         .then(res=> {return res.json()})
+         //.then(resJSON=>console.log(resJSON))
+         .then(resJSON=>dispatch({type: "SETREMINDER", payload: resJSON}))
   }
+
 
   function removeReminder(i){
       console.log(AppState)
