@@ -43,6 +43,16 @@ const reducer = (state, action) => {
         isAuthenticated: true,
         user: action.payload
       }
+    case "UPDATECENTRALSTATE":
+      localStorage.removeItem("user")
+      localStorage.setItem("user", JSON.stringify(action.payload))
+      return {
+        ...state,
+        isAuthenticated: true,
+        user: action.payload
+      }
+      
+
     default:
       return state;
   }
