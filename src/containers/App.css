@@ -8,23 +8,27 @@ body {
 
 .loginBtn {
   margin-top: 20px;
-  border: 0.1px solid rgba(255,255,255,1);
+  border: 0.1px solid rgba(0,0,0,1);
   font-family: monospace;
   
 }
 
 .loginBtn:hover {
-  border-radius: 15%;
-  border: 0.1px solid rgba(255,255,255,1);
-  background-color: #5534ff;
+  border: 0.3px solid rgba(0,255,255,1);
+  background-color: white;
+  opacity: 0.5
 }
 
 .regBtn {
   margin-top: 20px;
-  border: 0.1px solid rgba(255,255,255,1);
-  background-color: #5534ff;
+  margin-top: 20px;
+  border: 0.1px solid rgba(0,0,0,1);
   font-family: monospace;
-
+}
+.regBtn:hover {
+  border: 0.3px solid rgba(0,255,255,1);
+  background-color: white;
+  opacity: 0.5;
 }
  
  #readyToPlan{
