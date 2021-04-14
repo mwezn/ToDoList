@@ -31,7 +31,7 @@ function TimePicker(props) {
   return (
     <div className="timeSelect"><label>Set Time:</label>
       <input type="time" id="appt" name="appt"
-        min="00:00" max="23:59" onChange={props.onChange} defaultValue={t.slice(0, 5)} required></input></div>)
+         onChange={props.onChange} defaultValue={t.slice(0, 5)} required></input></div>)
 }
 
 function Calendar(props) {
@@ -43,6 +43,7 @@ function Calendar(props) {
 
   function handleTime(e) {
     const newObj = { time: e.target.value }
+    console.log(newObj)
     setTime(oldObj => {
       return { ...oldObj, ...newObj }
     })
@@ -87,7 +88,7 @@ function MyToDoComp(props) {
     //const interval=setInterval(()=>{i++;console.log(i)},1000);
     const interval = setInterval(() => {
       updateCentralState();
-    }, 10000)
+    }, 30000)
 
 
   })
