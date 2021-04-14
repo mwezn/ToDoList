@@ -1,22 +1,67 @@
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 20px;
-    background-color: #5534ff;
+    background-color: #5e82e6;
     color: rgb(245,222,179);
     
   }
+
+.loginBtn {
+  margin-top: 20px;
+  border: 0.1px solid rgba(255,255,255,1);
+  font-family: monospace;
+  
+}
+
+.loginBtn:hover {
+  border-radius: 15%;
+  border: 0.1px solid rgba(255,255,255,1);
+  background-color: #5534ff;
+}
+
+.regBtn {
+  margin-top: 20px;
+  border: 0.1px solid rgba(255,255,255,1);
+  background-color: #5534ff;
+  font-family: monospace;
+
+}
  
  #readyToPlan{
-    margin-left:1000px;
-    top:0px;
+    overflow: hidden;
+    margin-left:700px;
     border: 2px solid black;
+    width:40%;
+    text-align: center;
+    box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
   }
+.CssFlex {
+  display:flex;
+  flex-direction: row;
+}
+
+  #overdue {
+    margin-left:0px;
+    margin-top:0px;
+    border: 2px solid black;
+    width: 40%;
+    box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+    text-align: center;
+  }
+  #overdue:hover {
+    transform: scale(1.1);
+  }
+  #readyToPlan:hover {
+    transform: scale(1.1);
+  }
+  
   textarea {
     width: 500px;
     height:150px;
     font-size: 30px;
     margin-top: 15px;
     margin-bottom: 30px;
+    
   }
   textarea:hover {
     border-radius:15px;
@@ -39,7 +84,7 @@ body {
   }
   #box {
     box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
-    border: 1px solid #ccc;
+    border: 1px solid black;
     text-align: center;
     border-radius: 5px;
     margin-left: 200px;

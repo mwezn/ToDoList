@@ -205,8 +205,11 @@ function MyToDoComp(props) {
 
     <div>
       <h1 id="box">Hello {props.user.username} <br></br>Your "To Do" List:</h1>
+      <div className="CssFlex">
+      <div id="overdue"><h2>Your overdue Tasks:</h2><ul>{items2}</ul></div>
       <div id="readyToPlan"><h2>You will be emailed the following reminders:</h2><ul>{items3}</ul></div>
-      <div id="readyToPlan"><h2>Your overdue Tasks:</h2><ul>{items2}</ul></div>
+      </div>
+      <div id="textArea">
       <textarea
         onChange={(e) => handleChange(e)}
         value={AppState.userInput}
@@ -216,6 +219,7 @@ function MyToDoComp(props) {
       <br />
       <button id="createList" onClick={() => handleSubmit()}>Create List</button>
       <button id="clearList" onClick={() => clear()}>Clear List</button>
+      </div>
       <div id="card"><ul>{items}</ul></div>
 
 
