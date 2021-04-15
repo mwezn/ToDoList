@@ -14,6 +14,7 @@ function Navigate(props){
     <div>
       <ul className="NavBar">
         <li><a href="/" /*onClick={(e)=>e.preventDefault()}*/ >Home</a></li>
+        <li><a href="/completed">Complete</a></li>
         <li><a href="/logout" onClick={()=>dispatch({type: "LOGOUT"})}>Logout</a></li>
       </ul>
     </div>):(

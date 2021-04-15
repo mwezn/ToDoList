@@ -3,6 +3,7 @@ import Login from './containers/Login'
 import MyToDoComp from './containers/Todo'
 import Navigate from './containers/NavBar'
 import Register from './containers/Register'
+import Complete from './containers/Complete'
 
 
 
@@ -62,6 +63,9 @@ function MyRoutes(props){
     if (window.location.pathname === "/") {
       return props.authed?<MyToDoComp user={props.user} />:<Login />
     }
+    else if (window.location.pathname ==="/completed"){
+      return props.authed?<Complete user={props.user} />:<Login />
+    }
     else if (window.location.pathname === "/register"){
       return <Register />
     }
@@ -69,7 +73,7 @@ function MyRoutes(props){
       return <Login />
     }
     else if(window.location.pathname==="/logout"){
-      return <h1>YOUVE LOGGED OUT</h1>
+      return <h1>You've Logged Out</h1>
     }
     else{
       return <h1>404 Not Found!</h1>
