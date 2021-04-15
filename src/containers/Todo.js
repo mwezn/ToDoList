@@ -166,6 +166,41 @@ function MyToDoComp(props) {
       .then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))
   }
 
+  function dueDone(i) {
+    console.log(AppState)
+    let newObj = { ...props.user }
+    let item = newObj.log.splice(i, 1)
+    console.log(item)
+    const requestOptions = {
+      method: 'POST',
+      //mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: newObj, Item: item })
+    }
+
+    fetch('http://localhost:3001/dueDone', requestOptions)
+      .then(res => { return res.json() })
+      //.then(resJSON=>console.log(resJSON))
+      .then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))
+  }
+  function overdueDone(i) {
+    console.log(AppState)
+    let newObj = { ...props.user }
+    let item = newObj.overdue.splice(i, 1)
+    console.log(item)
+    const requestOptions = {
+      method: 'POST',
+      //mode: 'cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: newObj, Item: item })
+    }
+
+    fetch('http://localhost:3001/overdueDone', requestOptions)
+      .then(res => { return res.json() })
+      //.then(resJSON=>console.log(resJSON))
+      .then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))
+  }
+
   function submitToServer(e, index) {
     let obj = JSON.parse(e.target.value)
     console.log(e, index)
@@ -199,9 +234,10 @@ function MyToDoComp(props) {
 
 
   console.log(props.user)
-  const items2 = props.user.overdue.map((d, i) => <li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeOverdue(i)} >X<span class="tooltiptext">Delete Reminder?</span></span></li>)
-  const items3 = props.user.log.map((d, i) => <li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeReminder(i)} >X<span class="tooltiptext">Delete Reminder?</span></span><span className="done" onClick={() => removeReminder(i)} >&#9989;<span class="tooltiptext">Task complete?</span></span></li>)
   const items = !inputValidator(AppState.toDoList) && AppState.toDoList.length === 0 ? <h1>Enter some valid tasks separated by commas</h1> : AppState.toDoList.map((d, index) => d === "" ? null : <div key={index}><li className="btn1" key={index}>{d}<span onClick={() => setTime(index)} className={AppState.greentick[index] ? "clock2" : "clock"}>&#128337;</span><span className={AppState.greentick[index] ? "greenTick1" : "greenTick2"}>&#9989;</span></li><Calendar onClick={(e) => { submitToServer(e, index) }} item={d} style={AppState.vis[index] ? "calendar1" : "calendar2"} style2={AppState.greentick[index] ? "calendar2" : "calendar1"} submitStyle={AppState.greentick[index] ? "submitted" : "notsubmitted"} /></div>)
+  const items2 = props.user.overdue.map((d, i) => <li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeOverdue(i)} >X<span class="tooltiptext">Delete Reminder?</span></span><span className="done" onClick={() => overdueDone(i)} >&#9989;<span class="tooltiptext">Task complete?</span></span></li>)
+  const items3 = props.user.log.map((d, i) => <li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeReminder(i)} >X<span class="tooltiptext">Delete Reminder?</span></span><span className="done" onClick={() => dueDone(i)} >&#9989;<span class="tooltiptext">Task complete?</span></span></li>)
+  
   return (
 
     <div>

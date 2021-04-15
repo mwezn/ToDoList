@@ -6,9 +6,9 @@ import { AuthContext } from '../App'
 
 function Complete(props){
     const { dispatch } = React.useContext(AuthContext);
-    function removeOverdue(i) {
+    function removeDone(i) {
         let newObj = { ...props.user }
-        let item = newObj.overdue.splice(i, 1)
+        let item = newObj.done.splice(i, 1)
         console.log(item)
         const requestOptions = {
           method: 'POST',
@@ -17,18 +17,19 @@ function Complete(props){
           body: JSON.stringify({ data: newObj, Item: item })
         }
     
-        fetch('http://localhost:3001/removeOverdue', requestOptions)
+        fetch('http://localhost:3001/removeDone', requestOptions)
           .then(res => { return res.json() })
           .then(resJSON => dispatch({ type: "SETREMINDER", payload: resJSON }))
       }
 
 
 
-    const items2 = props.user.log.map((d, i) => <li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeOverdue(i)} >X<span class="tooltiptext">Delete Reminder?</span></span></li>)
+    const items2 = props.user.done.map((d, i) => <li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeDone(i)} >X<span class="tooltiptext">Delete?</span></span></li>)
     return (
       <div>
         <h1 id="box">Your completed tasks:</h1>
         <ul className="NavBar">
+          {items2}
         </ul>
       </div>
   );
