@@ -43,6 +43,13 @@ body {
   display:flex;
   flex-direction: row;
 }
+ .completedList {
+   box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+   width: 800px;
+}
+ .completedList:hover {
+   transform: scale(1.1)
+ }
 
   #overdue {
     margin-left:0px;
@@ -53,10 +60,10 @@ body {
     text-align: center;
   }
   #overdue:hover {
-    transform: scale(1.1);
+    transform: scale(1.01);
   }
   #readyToPlan:hover {
-    transform: scale(1.1);
+    transform: scale(1.01);
   }
   
   textarea {
@@ -142,7 +149,12 @@ body {
     color: black;
     display: block;
     position: relative; /* keeps inner(span) inside li*/
+    box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
     
+  }
+
+  ul li:hover {
+    transform: scale(1.1);
   }
   
   
@@ -190,7 +202,7 @@ body {
     right: 0%;
     padding: 12px 16px;
     transform: translate(0%, -50%);
-    opacity: 0.7;
+    opacity: 0.4;
     color: red;
   }
   .close:hover {
@@ -215,7 +227,9 @@ body {
   .close:hover .tooltiptext {
     visibility: visible;
   }
-  
+  .done {
+    cursor:pointer;
+  }
 
   .done .tooltiptext {
     visibility: hidden;

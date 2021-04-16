@@ -84,13 +84,9 @@ function MyToDoComp(props) {
   }
 
   React.useEffect(() => {
-    let i = 0;
-    //const interval=setInterval(()=>{i++;console.log(i)},1000);
-    const interval = setInterval(() => {
+    setInterval(() => {
       updateCentralState();
     }, 30000)
-
-
   })
 
 
@@ -235,8 +231,8 @@ function MyToDoComp(props) {
 
   console.log(props.user)
   const items = !inputValidator(AppState.toDoList) && AppState.toDoList.length === 0 ? <h1>Enter some valid tasks separated by commas</h1> : AppState.toDoList.map((d, index) => d === "" ? null : <div key={index}><li className="btn1" key={index}>{d}<span onClick={() => setTime(index)} className={AppState.greentick[index] ? "clock2" : "clock"}>&#128337;</span><span className={AppState.greentick[index] ? "greenTick1" : "greenTick2"}>&#9989;</span></li><Calendar onClick={(e) => { submitToServer(e, index) }} item={d} style={AppState.vis[index] ? "calendar1" : "calendar2"} style2={AppState.greentick[index] ? "calendar2" : "calendar1"} submitStyle={AppState.greentick[index] ? "submitted" : "notsubmitted"} /></div>)
-  const items2 = props.user.overdue.map((d, i) => <li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeOverdue(i)} >X<span class="tooltiptext">Delete Reminder?</span></span><span className="done" onClick={() => overdueDone(i)} >&#9989;<span class="tooltiptext">Task complete?</span></span></li>)
-  const items3 = props.user.log.map((d, i) => <li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeReminder(i)} >X<span class="tooltiptext">Delete Reminder?</span></span><span className="done" onClick={() => dueDone(i)} >&#9989;<span class="tooltiptext">Task complete?</span></span></li>)
+  const items2 = props.user.overdue.map((d, i) => <li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeOverdue(i)} >X<span class="tooltiptext">Delete Reminder?</span></span><span className="done" onClick={() => overdueDone(i)} >&#9989;<span class="tooltiptext">Complete?</span></span></li>)
+  const items3 = props.user.log.map((d, i) => <li key={i}>{`Task:${d.todo}, date: ${d.date}, time:${d.time}`}<span className="close" onClick={() => removeReminder(i)} >X<span class="tooltiptext">Delete Reminder?</span></span><span className="done" onClick={() => dueDone(i)} >&#9989;<span class="tooltiptext">Complete?</span></span></li>)
   
   return (
 
