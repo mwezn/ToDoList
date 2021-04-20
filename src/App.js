@@ -4,6 +4,7 @@ import MyToDoComp from './containers/Todo'
 import Navigate from './containers/NavBar'
 import Register from './containers/Register'
 import Complete from './containers/Complete'
+import image from './EmailImage.jpg'
 
 
 

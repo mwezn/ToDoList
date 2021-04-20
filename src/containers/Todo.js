@@ -83,11 +83,11 @@ function MyToDoComp(props) {
       .then(resJSON => dispatch({ type: "UPDATECENTRALSTATE", payload: resJSON }))
   }
 
-  React.useEffect(() => {
+  /*React.useEffect(() => {
     setInterval(() => {
       updateCentralState();
     }, 30000)
-  })
+  })*/
 
 
   function clear() {

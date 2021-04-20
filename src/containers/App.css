@@ -5,31 +5,6 @@ body {
     color: rgb(245,222,179);
     
   }
-
-.loginBtn {
-  margin-top: 20px;
-  border: 0.1px solid rgba(0,0,0,1);
-  font-family: monospace;
-  
-}
-
-.loginBtn:hover {
-  border: 0.3px solid rgba(0,255,255,1);
-  background-color: white;
-  opacity: 0.5
-}
-
-.regBtn {
-  margin-top: 20px;
-  margin-top: 20px;
-  border: 0.1px solid rgba(0,0,0,1);
-  font-family: monospace;
-}
-.regBtn:hover {
-  border: 0.3px solid rgba(0,255,255,1);
-  background-color: white;
-  opacity: 0.5;
-}
  
  #readyToPlan{
     overflow: hidden;
@@ -38,7 +13,7 @@ body {
     width:40%;
     text-align: center;
     box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
-  }
+}
 .CssFlex {
   display:flex;
   flex-direction: row;
@@ -112,14 +87,14 @@ body {
     background-color: #12eeff;
     border: 1px solid seagreen;
     font-family: monospace;
-    opacity: 60%
+    opacity: 1
   }
   .emailTaken {
     color: red;
     background-color: rosybrown;
     border: 2px solid red;
     font-family: monospace;
-    opacity: 60%
+    opacity: 1
   }
   h1 {
     font-size:50px;
@@ -263,10 +238,6 @@ body {
     opacity: 1;
     border: 1px solid black;
   }
-  /* The folowing is CSS from Login.css 
-  If you import both css files Login & App at the same time..it causes slight errors
-  by overriding the main App.css file???*/
-
   .clock2 {
     display: none;
   }
@@ -305,14 +276,77 @@ body {
     width: 500px;
     font-size: 25px;
   }
-  
-  #loginCardItems button {
+  #loginCardItems button{
+    width:500px;
+    margin-top: 20px;
+    margin-left:-0px;
+    border: 0.1px solid rgba(0,0,0,1);
+    font-family: monospace;
     font-size: 40px;
-    margin-left: 150px;
+    
   }
+  #loginCardItems button:hover {
+    border: 0.3px solid rgba(0,255,255,1);
+    background-color: white;
+    opacity: 0.5
+  }
+  
   
   label {
     font-size: 30px;
     text-align: center;
+  }
+  @media only screen and (max-width: 600px){
+    body {
+      background-color: #5e82e6;
+    }
+
+  
+    .NavBar > li {
+      border: 1px solid #ddd;
+      margin-top: -1px; /* Prevent double borders */
+      background-color: #aaafff;
+      box-shadow: 1px 1px 1px black;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 12px;
+      color: black;
+      display: inline;
+      font-family: monospace;
+      position: relative; /* keeps inner(span) inside li*/
+      
+    }
+    
+    .NavBar > li:hover {
+      opacity: 0.3;
+    }
+
+    #loginCard {
+      box-shadow: 10px 20px 10px  rgba(0,0,0,0.19),0 6px 6px rgba(0,0,0,0.23);
+      border: 1px solid #ccc;
+      margin-left: 0%;
+      width: 100%;
+      margin-top: 20px;
+    }
+    #loginCardItems input{
+      width: 100%;
+      font-size: 20px;
+      margin-left:-50px;
+    }
+    #loginCardItems button{
+      width:100%;
+      margin-left: -50px;
+      margin-top: 20px;
+      border: 0.1px solid rgba(0,0,0,1);
+      font-family: monospace;
+      
+    }
+    #loginCardItems button:hover {
+      border: 0.3px solid rgba(0,255,255,1);
+      background-color: white;
+      opacity: 0.5
+    }
+
+  
   }
 

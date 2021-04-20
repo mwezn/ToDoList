@@ -65,7 +65,7 @@ export default function Login() {
         <input type="email" name="email" placeholder="Enter Email" onChange={(e)=>enterEmail(e)} required></input><br></br>
         <label for="pass">Password:</label><br></br>
         <input type="text" name="pass" placeholder="Enter Password" onChange={(e)=>enterPassword(e)} required></input><br></br>
-        <button className="loginBtn">Login</button>
+        <button>Login</button>
     </form> 
     <div><h1>{loginCredentials.emailExist===false?<p className="emailTaken">Email doesn't exist</p>:loginCredentials.passCorrect===false?<p className="emailTaken">Wrong Password</p>:null}</h1></div>
     </div>
