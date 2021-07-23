@@ -2,7 +2,7 @@ import {React, useState, useContext} from "react";
 import { AuthContext } from '../App'
 
 
-export default function Login() {
+export default function Login(props) {
   
   const [loginCredentials, setParams] = useState({email: "", password: "", emailExist:null, passCorrect: null});
   const  { dispatch } = useContext(AuthContext);
@@ -60,6 +60,7 @@ export default function Login() {
   return (
     <div>
     <div id="loginCard">
+      <img src={props.i}></img>
     <form id="loginCardItems" onSubmit={(e)=>handleSubmit(e)} method="post">
         <label for="email">Email:</label><br></br>
         <input type="email" name="email" placeholder="Enter Email" onChange={(e)=>enterEmail(e)} required></input><br></br>

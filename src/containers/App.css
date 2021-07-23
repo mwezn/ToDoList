@@ -265,6 +265,10 @@ body {
     width: 75%;
     margin-top: 20px;
   }
+  #loginCard img {
+    width:90%;
+    height:50%;
+  }
   #loginCardItems{
     position: relative;
     margin-top: 50px;

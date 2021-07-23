@@ -62,7 +62,7 @@ const reducer = (state, action) => {
 
 function MyRoutes(props){
     if (window.location.pathname === "/") {
-      return props.authed?<MyToDoComp user={props.user} />:<Login />
+      return props.authed?<MyToDoComp user={props.user} />:<Login i={image} />
     }
     else if (window.location.pathname ==="/completed"){
       return props.authed?<Complete user={props.user} />:<Login />
